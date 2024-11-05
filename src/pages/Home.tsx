@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   return (
-    <div className="overflow-auto">
+    <div className="overflow-auto text-left justify-start">
       {/* Traditional Table Layout for Larger Screens */}
       <table className="min-w-full border-collapse border border-gray-200 hidden sm:table">
         <thead>
