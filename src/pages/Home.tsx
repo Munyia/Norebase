@@ -6,7 +6,7 @@ interface Coin {
     symbol: string;
     price_usd: string;
     tsupply: string; 
-  }
+}
 
 const Home = () => {
   const [coins, setCoins] = useState<Coin[]>([]);
@@ -34,27 +34,43 @@ const Home = () => {
 
   return (
     <div className="overflow-auto">
-      <table className="min-w-full border-collapse border border-gray-200">
+      <table className="min-w-full border-collapse border border-gray-200 hidden sm:table">
         <thead>
           <tr className="bg-gray-300">
-            <th className="p-4">Coin 💰</th>
-            <th className="p-4">Code 📜</th>
-            <th className="p-4">Price 😛</th>
-            <th className="p-4">Supply 📊</th>
+            <th className="p-4">💰 Coin</th>
+            <th className="p-4">📜 Code</th>
+            <th className="p-4">😛 Price</th>
+            <th className="p-4">📊 Supply</th>
           </tr>
         </thead>
         <tbody>
           {paginatedCoins.map((coin, index) => (
             <tr key={coin.id} className={`text-sm ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
-            <td className="p-4">{coin.name}</td>
-            <td className="p-4">{coin.symbol}</td>
-            <td className="p-4">${coin.price_usd}</td>
-            <td className="p-4">{coin.tsupply}</td>
-          </tr>
+              <td className="p-4">{coin.name}</td>
+              <td className="p-4">{coin.symbol}</td>
+              <td className="p-4">${coin.price_usd}</td>
+              <td className="p-4">{coin.tsupply}</td>
+            </tr>
           ))}
         </tbody>
       </table>
 
+      {/* Responsive Card Layout for Smaller Devices */}
+      <div className="sm:hidden">
+        {paginatedCoins.map((coin, index) => (
+          <div
+            key={coin.id}
+            className={`p-4 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} mb-4 rounded-md shadow-md`}
+          >
+            <div className="font-bold">💰 Coin: {coin.name}</div>
+            <div className="font-bold">📜 Code: {coin.symbol}</div>
+            <div>😛 Price: ${coin.price_usd}</div>
+            <div>📊 Supply: {coin.tsupply}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
       <div className="flex justify-between mx-5 items-center my-4">
         {currentPage > 1 ? (
           <button
@@ -76,23 +92,6 @@ const Home = () => {
           </button>
         )}
       </div>
-
-      {/* Responsive Styling */}
-      <style>
-        {`
-          @media (max-width: 640px) {
-            table thead { display: none; }
-            table tbody tr { 
-              display: flex; 
-              flex-direction: column;
-              margin-bottom: 0.5rem;
-            }
-            table tbody tr td:first-child {
-              font-weight: bold;
-            }
-          }
-        `}
-      </style>
     </div>
   );
 };
