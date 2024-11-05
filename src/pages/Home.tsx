@@ -41,7 +41,7 @@ const Home = () => {
             <th className="p-4">💰 Coin</th>
             <th className="p-4">📜 Code</th>
             <th className="p-4">😛 Price</th>
-            <th className="p-4">📊 Supply</th>
+            <th className="p-4">📊Total Supply</th>
           </tr>
         </thead>
         <tbody>
