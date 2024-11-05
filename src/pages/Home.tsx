@@ -50,7 +50,7 @@ const Home = () => {
               <td className="p-4">{coin.name}</td>
               <td className="p-4">{coin.symbol}</td>
               <td className="p-4">${coin.price_usd}</td>
-              <td className="p-4">{coin.tsupply}</td>
+              <td className="p-4">{coin.tsupply} {coin.symbol}</td>
             </tr>
           ))}
         </tbody>
@@ -81,7 +81,7 @@ const Home = () => {
         </div>
         <div className="w-1/2">
           <span className="font-bold">📊 Supply:</span>
-          <span className="block pl-1">{coin.tsupply}</span>
+          <span className="block pl-1">{coin.tsupply} {coin.symbol}</span>
         </div>
       </div>
     </div>
