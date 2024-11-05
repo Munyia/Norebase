@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 interface Coin {
-    id: string;
-    name: string;
-    symbol: string;
-    price_usd: string;
-    tsupply: string; 
+  id: string;
+  name: string;
+  symbol: string;
+  price_usd: string;
+  tsupply: string;
 }
 
 const Home = () => {
@@ -34,9 +34,10 @@ const Home = () => {
 
   return (
     <div className="overflow-auto">
+      {/* Traditional Table Layout for Larger Screens */}
       <table className="min-w-full border-collapse border border-gray-200 hidden sm:table">
         <thead>
-          <tr className="bg-gray-300">
+          <tr className="">
             <th className="p-4">💰 Coin</th>
             <th className="p-4">📜 Code</th>
             <th className="p-4">😛 Price</th>
@@ -45,7 +46,7 @@ const Home = () => {
         </thead>
         <tbody>
           {paginatedCoins.map((coin, index) => (
-            <tr key={coin.id} className={`text-sm ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}`}>
+            <tr key={coin.id} className={`text-sm ${index % 2 === 0 ? 'bg-gray-300' : 'bg-white'}`}>
               <td className="p-4">{coin.name}</td>
               <td className="p-4">{coin.symbol}</td>
               <td className="p-4">${coin.price_usd}</td>
@@ -57,25 +58,43 @@ const Home = () => {
 
       {/* Responsive Card Layout for Smaller Devices */}
       <div className="sm:hidden">
-        {paginatedCoins.map((coin, index) => (
-          <div
-            key={coin.id}
-            className={`p-4 ${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} mb-4 rounded-md shadow-md`}
-          >
-            <div className="font-bold">💰 Coin: {coin.name}</div>
-            <div className="font-bold">📜 Code: {coin.symbol}</div>
-            <div>😛 Price: ${coin.price_usd}</div>
-            <div>📊 Supply: {coin.tsupply}</div>
-          </div>
-        ))}
+  {paginatedCoins.map((coin, index) => (
+    <div
+      key={coin.id}
+      className={`p-2 ${index % 2 === 0 ? 'bg-gray-300' : 'bg-white'} mb-4 w-full rounded-md`}
+    >
+      <div className="flex justify-start gap-4 text-left">
+        <div className="w-1/2">
+          <span className="font-bold">💰 Coin:</span>
+          <span className="block pl-1">{coin.name}</span>
+        </div>
+        <div className="w-1/2">
+          <span className="font-bold">📜 Code:</span>
+          <span className="block pl-1">{coin.symbol}</span>
+        </div>
       </div>
+      
+      <div className="flex justify-start gap-4 text-left mt-2">
+        <div className="w-1/2">
+          <span className="font-bold">😛 Price:</span>
+          <span className="block pl-1">${coin.price_usd}</span>
+        </div>
+        <div className="w-1/2">
+          <span className="font-bold">📊 Supply:</span>
+          <span className="block pl-1">{coin.tsupply}</span>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
 
       {/* Pagination Controls */}
       <div className="flex justify-between mx-5 items-center my-4">
         {currentPage > 1 ? (
           <button
             onClick={handlePrevPage}
-            className="p-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="p-2  rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           >
             &larr; Previous
           </button>
@@ -86,7 +105,7 @@ const Home = () => {
         {currentPage * itemsPerPage < coins.length && (
           <button
             onClick={handleNextPage}
-            className="p-2 bg-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="p-2  rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           >
             Next &rarr;
           </button>
